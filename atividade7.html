@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ranking de Pontuações</title>
+<script>
+    let scores = [];
+    function addScore() {
+        const scoreInput = document.getElementById("score");
+        const score = parseInt(scoreInput.value);
+        if (!isNaN(score)) {
+            scores.push(score);
+            scoreInput.value = "";
+            updateRanking();
+        }
+    }
+    function updateRanking() {
+        const rankingList = document.getElementById("ranking-list");
+        scores.sort((a, b) => b - a);
+        let rankingHTML = "";
+        for (let i = 0; i < scores.length; i++) {
+            rankingHTML += `<li>${i + 1}. Pontuação: ${scores[i]}</li>`;
+        }
+        rankingList.innerHTML = rankingHTML;
+    }
+</script>
+</head>
+<body>
+    <h1>Ranking de Pontuações</h1>
+    <input type="number" id="score" placeholder="Insira sua pontuação">
+    <button onclick="addScore()">Adicionar Pontuação</button>
+    <h2>Ranking</h2>
+    <ul id="ranking-list"></ul>
+</body>
+</html>

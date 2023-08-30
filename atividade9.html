@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cadastro de Alunos</title>
+<script>
+    let nomes = [];
+    let idades = [];
+    function cadastrarAluno() {
+        const nomeInput = document.getElementById("nome");
+        const idadeInput = document.getElementById("idade");
+        const nome = nomeInput.value;
+        const idade = parseInt(idadeInput.value);
+        if (nome && !isNaN(idade)) {
+            nomes.push(nome);
+            idades.push(idade);
+            nomeInput.value = "";
+            idadeInput.value = "";
+            exibirListaAlunos();
+        }
+    }
+    function exibirListaAlunos() {
+        const listaAlunos = document.getElementById("lista-alunos");
+        let listaHTML = "<ul>";
+        for (let i = 0; i < nomes.length; i++) {
+            listaHTML += `<li>${nomes[i]} - ${idades[i]} anos</li>`;
+        }
+        listaHTML += "</ul>";
+        listaAlunos.innerHTML = listaHTML;
+    }
+</script>
+</head>
+<body>
+    <h1>Cadastro de Alunos</h1>
+    <label for="nome">Nome do Aluno:</label>
+    <input type="text" id="nome"><br>
+    <label for="idade">Idade do Aluno:</label>
+    <input type="number" id="idade"><br>
+    <button onclick="cadastrarAluno()">Cadastrar Aluno</button>
+    <h2>Lista de Alunos</h2>
+    <div id="lista-alunos"></div>
+</body>
+</html>
